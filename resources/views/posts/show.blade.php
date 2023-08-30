@@ -17,7 +17,10 @@
                 <img class="w-full h-80 object-cover object-center py-4 px-2" src="{{Storage::url('posts/'.$mainImage->url)}}" >
                 @foreach ( $post->tags as $tag )
 
-                <span class="p-2 bg-slate-600 rounded-xl px-4 m-1">{{ $tag->name }}</span>
+                <a class="p-2 bg-slate-600 rounded-xl px-4 m-1"
+                    href="{{route('posts.tag', $tag)}}"    
+                >
+                    {{ $tag->name }}</a>
 
                 @endforeach
             </figure>

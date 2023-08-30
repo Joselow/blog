@@ -1,5 +1,11 @@
 <x-app-layout>
 <div class=" bg-indigo-100">
+    @if (isset($classification))
+        <h3 class="pb-3 text-2xl font-bold">{{ $classification['name'] }} :
+            {{ $classification['content'] }}
+    </h3>
+    @endif
+   
     <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
         @foreach ($posts as $post)
             @php
@@ -14,7 +20,7 @@
                         
                         <div>
                             @foreach ($post->tags as $tag)    
-                                <a class="py-1 px-3 bg-slate-900 text-white rounded-md" href="">{{ $tag->name }}</a>
+                                <a class="py-1 px-3 bg-slate-900 text-white rounded-md" href="{{route('posts.tag', $tag )}}">{{ $tag->name }}</a>
                             @endforeach
                         </div>
                         <a class="text-white font-semibold text-xl" href="{{route('posts.show', $post)}}">{{ $post->name }}</a>
@@ -24,6 +30,7 @@
         @endforeach
     </div>
 
+    {{-- PAGINATION --}}
     <div class="mt-4">
         {{$posts->links()}}
     </div>

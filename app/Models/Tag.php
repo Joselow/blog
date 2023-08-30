@@ -12,7 +12,7 @@ class Tag extends Model
     protected $guarded = ['id'];
 
     public function posts(): BelongsToMany{
-        return $this->belongsToMany(Post::class, 'post_tags','idTag ', 'idPost');
+        return $this->belongsToMany(Post::class, 'post_tags','idTag', 'idPost');
     }
 
 }

@@ -17,27 +17,24 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         
-        Storage::deleteDirectory('public/posts');
-        Storage::makeDirectory('public/posts');
-
+        // Storage::deleteDirectory('public/posts');
+        // Storage::makeDirectory('public/posts');
 
         $posts = Post::factory(20)->create();
 
-        foreach($posts as $post){
+        foreach ($posts as $post) {
             $images = Image::factory(3)->create([
                 'idImageable' => $post->id,
                 'typeImageable' => Post::class,
             ]);
 
-            $imageToMakeMain = $images->random();
-            $imageToMakeMain->update(['isMain' => true]);
+            $mainImage = $images->random();
+            $mainImage->update(['isMain' => true]);
 
             $post->tags()->attach([
                 random_int(1, 4),
                 random_int(5, 11),
             ]);
         }
-        
-
     }
 }
